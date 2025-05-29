@@ -5,10 +5,11 @@ import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import Table from "./components/Table";
 
+// todoList = [0:{ "todo": todo, "date": date, "time": time }]
+
 const App = () => {
   const [search, setSearch] = useState("");
   const [todoList, setTodoList] = useState([]);
-
   const handleSearch = (e) => {
     setSearch(e.target.value);
     console.log(search);
@@ -26,7 +27,7 @@ const App = () => {
     <div className="container-fluid g-0">
       <Header search={search} handleSearch={handleSearch} />
       <Navbar addTodoList={addTodoList} />
-      <Table />
+      <Table todoList={todoList} />
     </div>
   );
 };

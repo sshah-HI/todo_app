@@ -1,11 +1,11 @@
 import React from "react";
 import CRUDButton from "./CRUDButton";
 
-const TodoCard = ({ className, number, note, date, time, status }) => {
+const TodoCard = ({ className, number, todo, date, time, status }) => {
   return (
     <tr className={className + " " + status}>
       <th scope="row">{number}</th>
-      <td className="text-truncate">{note}</td>
+      <td className="text-truncate">{todo}</td>
       <td className="text-truncate">{date}</td>
       <td className="text-truncate">{time}</td>
       <td className="text-center">

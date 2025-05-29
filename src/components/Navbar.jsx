@@ -33,6 +33,7 @@ const Navbar = ({ addTodoList }) => {
         <div className="d-flex p-2 justify-content-start align-items-center w-100">
           <input
             value={todo}
+            required
             className="form-control me-2 p-2 flex-grow-1"
             type="text"
             id="note-title"
@@ -47,7 +48,7 @@ const Navbar = ({ addTodoList }) => {
             name="enddate"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            min="2026-01-01"
+            min={todayDate}
             max="2027-12-31"
             required
           />

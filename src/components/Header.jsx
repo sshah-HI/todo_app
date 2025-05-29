@@ -3,25 +3,37 @@ import HeaderButton from "./headerButton";
 const Header = ({ searchTerm, handleSearch }) => {
   return (
     <header>
-      <nav className="d-flex p-2 navbar navbar-light bg-light">
-        <form className="d-flex">
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder={searchTerm}
-            onChange={handleSearch}
-            aria-label="Search"
-          />
-          <button className="btn btn-outline-primary" type="submit">
-            Search
-          </button>
-        </form>
-        {/* <a className="nav-link">
-          <img src="https://picsum.photos/200/100" alt="Logo" />
-        </a> */}
-        <HeaderButton name="Done" className={"btn btn-success"} />
-        <HeaderButton name="Pending" className={"btn btn-warning"} />
-        <HeaderButton name="Overdue" className={"btn btn-danger"} />
+      <nav className="navbar navbar-dark bg-dark px-2">
+        <div className="container-fluid px-2">
+          <div className="d-flex justify-content-start align-items-center">
+            <div className="d-flex align-items-center">
+              <img
+                src="/todo.svg"
+                alt="Logo"
+                className="img-fluid me-2"
+                style={{ height: "50px", width: "auto" }}
+              />
+              <form className="d-flex">
+                <input
+                  className="form-control me-2"
+                  type="search"
+                  placeholder={searchTerm}
+                  onChange={handleSearch}
+                  aria-label="Search"
+                />
+                <button className="btn btn-outline-primary" type="submit">
+                  <i className="fas fa-search"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div className="d-flex align-items-center gap-2 justify-content-end">
+            <HeaderButton name="Done" className="btn btn-success" />
+            <HeaderButton name="Pending" className="btn btn-warning" />
+            <HeaderButton name="Overdue" className="btn btn-danger" />
+          </div>
+        </div>
       </nav>
     </header>
   );

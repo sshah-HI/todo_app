@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import TodoCard from "./components/TodoCard";
@@ -15,7 +16,7 @@ const App = () => {
   };
 
   return (
-    <div className="main px-2">
+    <div className="container-fluid g-0">
       <Header search={search} handleSearch={handleSearch} />
       <Navbar setDate={setDate} setTime={setTime} />
       <TodoCard />

@@ -1,14 +1,38 @@
 import React from "react";
+import CRUDButton from "./CRUDButton";
 
-const TodoCard = () => {
+const TodoCard = ({ className, number, note, date, time, status }) => {
   return (
-    <div className="d-flex p-2">
-      <h2>This is the first note</h2>
-      <time datetime="2018-07-07">July 7 </time>
-      <time datetime="20:00"> 20:00</time>
-      <button className="bi bi-check-lg"></button>
-      <button className="bi bi-x-lg" type="submit"></button>
-    </div>
+    <tr className={className + " " + status}>
+      <th scope="row">{number}</th>
+      <td className="text-truncate">{note}</td>
+      <td className="text-truncate">{date}</td>
+      <td className="text-truncate">{time}</td>
+      <td className="text-center">
+        <CRUDButton
+          className="btn btn-success btn-sm"
+          i_className="fa-solid fa-plus"
+          type="button"
+          id="create"
+        />
+      </td>
+      <td className="text-center">
+        <CRUDButton
+          className="btn bg-info btn-sm"
+          i_className="fa-solid fa-pen-to-square"
+          type="button"
+          id="edit"
+        />
+      </td>
+      <td className="text-center">
+        <CRUDButton
+          className="btn btn-danger btn-sm"
+          i_className="fa-solid fa-xmark"
+          type="button"
+          id="delete"
+        />
+      </td>
+    </tr>
   );
 };
 

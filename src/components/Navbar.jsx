@@ -1,8 +1,12 @@
 import React from "react";
+import CRUDButton from "./CRUDButton";
 
 const Navbar = ({ setDate, setTime }) => {
   return (
-    <nav className="navbar navbar-dark bg-warning px-2">
+    <nav
+      className="navbar navbar-dark bg-warning px-2"
+      style={{ backgroundColor: "#662e0f" }}
+    >
       <form className="d-flex p-2 align-items-center w-100">
         <div className="d-flex p-2 justify-content-start align-items-center w-100">
           <input
@@ -36,15 +40,16 @@ const Navbar = ({ setDate, setTime }) => {
         </div>
 
         <div className="d-flex align-items-center gap-1 justify-content-end">
-          <button type="submit" className="btn btn-success">
-            <i className="fa-solid fa-plus"></i>
-          </button>
-          <button type="submit" className="btn btn-info">
-            <i className="fa-solid fa-plus"></i>
-          </button>
-          <button type="submit" className="btn btn-danger">
-            <i className="fa-solid fa-xmark"></i>
-          </button>
+          <CRUDButton
+            className="btn btn-success"
+            i_className="fa-solid fa-plus"
+            type="submit"
+          />
+          <CRUDButton
+            className="btn btn-danger"
+            i_className="fa-solid fa-xmark"
+            type="submit"
+          />
         </div>
       </form>
     </nav>

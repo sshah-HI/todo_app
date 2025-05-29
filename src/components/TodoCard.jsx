@@ -11,7 +11,7 @@ const TodoCard = ({ className, number, note, date, time, status }) => {
       <td className="text-center">
         <CRUDButton
           className="btn btn-success btn-sm"
-          i_className="fa-solid fa-plus"
+          i_className="fa-solid fa-check"
           type="button"
           id="create"
         />
@@ -27,7 +27,7 @@ const TodoCard = ({ className, number, note, date, time, status }) => {
       <td className="text-center">
         <CRUDButton
           className="btn btn-danger btn-sm"
-          i_className="fa-solid fa-xmark"
+          i_className="fa-solid fa-trash"
           type="button"
           id="delete"
         />

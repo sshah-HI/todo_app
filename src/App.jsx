@@ -7,18 +7,25 @@ import Table from "./components/Table";
 
 const App = () => {
   const [search, setSearch] = useState("");
-  const [date, setDate] = useState("some text");
-  const [time, setTime] = useState("10:00");
+  const [todoList, setTodoList] = useState([]);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
     console.log(search);
   };
 
+  const addTodoList = (newTodo) => {
+    setTodoList((prev) => {
+      const updated = [...prev, newTodo];
+      console.log("New todoList:", updated);
+      return updated;
+    });
+  };
+
   return (
     <div className="container-fluid g-0">
       <Header search={search} handleSearch={handleSearch} />
-      <Navbar setDate={setDate} setTime={setTime} />
+      <Navbar addTodoList={addTodoList} />
       <Table />
     </div>
   );

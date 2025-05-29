@@ -68,7 +68,9 @@ const Navbar = ({ addTodoList }) => {
             className="btn btn-success"
             i_className="fa-solid fa-plus"
             type="button"
-            onClick={() => addTodoList({ todo, date, time })}
+            onClick={() =>
+              addTodoList({ todo, date, time, status: "table-warning" })
+            }
           />
           <CRUDButton
             className="btn btn-danger"

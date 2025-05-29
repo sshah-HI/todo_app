@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import CRUDButton from "./CRUDButton";
 
-const TodoCard = ({ className, number, todo, date, time, status }) => {
+const TodoCard = ({
+  className,
+  number,
+  todo,
+  date,
+  time,
+  status,
+  todoList,
+}) => {
+  const [rowStatus, setRowStatus] = useState(status);
+
   return (
-    <tr className={className + " " + status}>
+    <tr className={className + " " + rowStatus}>
       <th scope="row">{number}</th>
       <td className="text-truncate">{todo}</td>
       <td className="text-truncate">{date}</td>
@@ -14,6 +24,9 @@ const TodoCard = ({ className, number, todo, date, time, status }) => {
           i_className="fa-solid fa-check"
           type="button"
           id="create"
+          onClick={() => {
+            setRowStatus("table-success");
+          }}
         />
       </td>
       <td className="text-center">
@@ -30,6 +43,9 @@ const TodoCard = ({ className, number, todo, date, time, status }) => {
           i_className="fa-solid fa-trash"
           type="button"
           id="delete"
+          onClick={(e) => {
+            console.log(e.target.number);
+          }}
         />
       </td>
     </tr>

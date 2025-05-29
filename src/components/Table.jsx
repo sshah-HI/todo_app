@@ -34,7 +34,8 @@ const Table = ({ todoList }) => {
               date={todo.date}
               time={todo.time}
               className="align-middle"
-              status="table-warning"
+              status={todo.status}
+              todoList={todoList}
             />
           );
         })}

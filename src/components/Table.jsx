@@ -1,7 +1,11 @@
 import React from "react";
 import TodoCard from "./TodoCard";
 
-const Table = ({ todoList }) => {
+const Table = ({ todoList, setTodoList }) => {
+  function handleDelete(index) {
+    setTodoList((prev) => prev.filter((_, i) => i !== index));
+  }
+
   return (
     <table
       className="table table-striped table-hover"
@@ -9,7 +13,9 @@ const Table = ({ todoList }) => {
     >
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th style={{ width: "40px" }} scope="col">
+            #
+          </th>
           <th scope="col">To-Do</th>
           <th scope="col">Due Date</th>
           <th scope="col">Due Time</th>
@@ -36,6 +42,7 @@ const Table = ({ todoList }) => {
               className="align-middle"
               status={todo.status}
               todoList={todoList}
+              onDelete={() => handleDelete(index)}
             />
           );
         })}

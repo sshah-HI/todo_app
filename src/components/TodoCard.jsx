@@ -8,9 +8,25 @@ const TodoCard = ({
   date,
   time,
   status,
-  todoList,
+  onDelete,
 }) => {
   const [rowStatus, setRowStatus] = useState(status);
+  const [i_className, setI_classname] = useState("fa-solid fa-check");
+  const [completenessclassName, setcompletenessclassName] = useState(
+    "btn btn-success btn-sm"
+  );
+
+  function handleCompleteness() {
+    if (i_className == "fa-solid fa-check") {
+      setI_classname("fa-regular fa-rectangle-xmark");
+      setRowStatus("table-success");
+      setcompletenessclassName("btn btn-warning btn-sm");
+    } else {
+      setI_classname("fa-solid fa-check");
+      setRowStatus("table-warning");
+      setcompletenessclassName("btn btn-success btn-sm");
+    }
+  }
 
   return (
     <tr className={className + " " + rowStatus}>
@@ -20,12 +36,12 @@ const TodoCard = ({
       <td className="text-truncate">{time}</td>
       <td className="text-center">
         <CRUDButton
-          className="btn btn-success btn-sm"
-          i_className="fa-solid fa-check"
+          className={completenessclassName}
+          i_className={i_className}
           type="button"
           id="create"
           onClick={() => {
-            setRowStatus("table-success");
+            handleCompleteness();
           }}
         />
       </td>
@@ -43,9 +59,7 @@ const TodoCard = ({
           i_className="fa-solid fa-trash"
           type="button"
           id="delete"
-          onClick={(e) => {
-            console.log(e.target.number);
-          }}
+          onClick={onDelete}
         />
       </td>
     </tr>

@@ -10,6 +10,19 @@ const Navbar = ({ addTodoList }) => {
     return formattedDate;
   };
 
+  function handlePlus(e) {
+    e.preventDefault();
+
+    const form = e.target.closest("form");
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    addTodoList({ todo, date, time, status: "table-warning" });
+    setTodo("");
+  }
+
   function Reset() {
     setDate(todayDate);
     setTime(todayTime);
@@ -25,10 +38,7 @@ const Navbar = ({ addTodoList }) => {
   const [time, setTime] = useState(todayTime);
 
   return (
-    <nav
-      className="navbar navbar-dark bg-warning px-2"
-      style={{ backgroundColor: "#662e0f" }}
-    >
+    <nav className="navbar navbar-dark bg-warning px-2">
       <form className="d-flex p-2 align-items-center w-100">
         <div className="d-flex p-2 justify-content-start align-items-center w-100">
           <input
@@ -67,10 +77,8 @@ const Navbar = ({ addTodoList }) => {
           <CRUDButton
             className="btn btn-success"
             i_className="fa-solid fa-plus"
-            type="button"
-            onClick={() =>
-              addTodoList({ todo, date, time, status: "table-warning" })
-            }
+            type="submit"
+            onClick={(e) => handlePlus(e)}
           />
           <CRUDButton
             className="btn btn-danger"

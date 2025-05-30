@@ -1,6 +1,6 @@
-const tableRed = "table-warning";
-const tableYellow = "table-warning";
-const tableGreen = "table-success";
-const buttonRed = "btn-danger";
-const buttonYellow = "btn-warning";
-const buttonGreen = "btn-success";
+export const tableRed = "table-danger";
+export const tableYellow = "table-warning";
+export const tableGreen = "table-success";
+export const buttonRed = "btn-danger";
+export const buttonYellow = "btn-warning";
+export const buttonGreen = "btn-success";

@@ -1,6 +1,6 @@
 import React from "react";
 
-const HeaderButton = ({ className, name }) => {
+const HeaderButton = ({ className, name, onClick }) => {
   return (
     <button
       className={`navbar-toggler ${className}`}
@@ -8,6 +8,7 @@ const HeaderButton = ({ className, name }) => {
       aria-controls="navbarExample01"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      onClick={onClick}
     >
       {name}
     </button>

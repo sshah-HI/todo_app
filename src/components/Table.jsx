@@ -1,9 +1,23 @@
 import React from "react";
 import TodoCard from "./TodoCard";
+import { tableGreen, tableYellow } from "../styles/colors";
 
-const Table = ({ todoList, setTodoList }) => {
+const Table = ({ todoList, setTodoList, status, setStatus }) => {
   function handleDelete(index) {
     setTodoList((prev) => prev.filter((_, i) => i !== index));
+  }
+
+  function changeStatus(index) {
+    setTodoList((prev) =>
+      prev.map((obj, i) =>
+        i === index
+          ? {
+              ...obj,
+              status: obj.status === tableGreen ? tableYellow : tableGreen,
+            }
+          : obj
+      )
+    );
   }
 
   return (
@@ -40,8 +54,10 @@ const Table = ({ todoList, setTodoList }) => {
               date={todo.date}
               time={todo.time}
               className="align-middle"
-              status={todo.status}
+              status={status}
+              setStatus={setStatus}
               todoList={todoList}
+              changeStatus={() => changeStatus(index)}
               onDelete={() => handleDelete(index)}
             />
           );

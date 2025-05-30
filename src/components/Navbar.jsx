@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
 import CRUDButton from "./CRUDButton";
+import { getTodayDate, getTodayTime } from "../utils/dateUtils";
 
-const Navbar = ({ addTodoList }) => {
-  const formatDateISO = (date) => {
-    // Convert the date to ISO string
-    const isoString = date.toISOString();
-    // Split at the "T" character to get the date part
-    const formattedDate = isoString.split("T")[0];
-    return formattedDate;
-  };
-
+const Navbar = ({
+  todo,
+  setTodo,
+  date,
+  setDate,
+  time,
+  setTime,
+  status,
+  setStatus,
+  addTodoList,
+}) => {
   function handlePlus(e) {
     e.preventDefault();
 
@@ -19,23 +21,15 @@ const Navbar = ({ addTodoList }) => {
       return;
     }
 
-    addTodoList({ todo, date, time, status: "table-warning" });
-    setTodo("");
+    addTodoList({ todo, date, time, status });
+    // setTodo("");
   }
 
   function Reset() {
-    setDate(todayDate);
-    setTime(todayTime);
     setTodo("");
+    setDate(getTodayDate());
+    setTime(getTodayTime());
   }
-
-  const today = new Date();
-  const todayDate = formatDateISO(today);
-  const todayTime = today.toTimeString().split(" ")[0];
-
-  const [todo, setTodo] = useState("");
-  const [date, setDate] = useState(todayDate);
-  const [time, setTime] = useState(todayTime);
 
   return (
     <nav className="navbar navbar-dark bg-warning px-2">
@@ -58,7 +52,7 @@ const Navbar = ({ addTodoList }) => {
             name="enddate"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            min={todayDate}
+            min={getTodayDate()}
             max="2027-12-31"
             required
           />
@@ -68,7 +62,7 @@ const Navbar = ({ addTodoList }) => {
             id="endtime"
             name="endtime"
             onChange={(e) => setTime(e.target.value)}
-            value={time}
+            value={getTodayTime()}
             required
           />
         </div>

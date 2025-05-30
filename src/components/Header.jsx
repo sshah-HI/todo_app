@@ -1,6 +1,12 @@
+import { tableGreen } from "../styles/colors";
 import HeaderButton from "./headerButton";
 
-const Header = ({ searchTerm, handleSearch }) => {
+const Header = ({ searchTerm, handleSearch, todoList, setFilteredTodos }) => {
+  const Done = () => {
+    const filtered = todoList.filter((todo) => todo.status === tableGreen);
+    setFilteredTodos(filtered);
+  };
+
   return (
     <header>
       <nav className="navbar navbar-dark bg-dark px-2">
@@ -29,7 +35,11 @@ const Header = ({ searchTerm, handleSearch }) => {
           </div>
 
           <div className="d-flex align-items-center gap-2 justify-content-end">
-            <HeaderButton name="Done" className="btn btn-success" />
+            <HeaderButton
+              name="Done"
+              className="btn btn-success"
+              onClick={Done}
+            />
             <HeaderButton name="Pending" className="btn btn-warning" />
             <HeaderButton name="Overdue" className="btn btn-danger" />
           </div>

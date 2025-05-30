@@ -1,5 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CRUDButton from "./CRUDButton";
+import {
+  buttonYellow,
+  buttonGreen,
+  tableGreen,
+  tableYellow,
+} from "../styles/colors.js";
 
 const TodoCard = ({
   className,
@@ -8,7 +14,10 @@ const TodoCard = ({
   date,
   time,
   status,
+  setStatus,
   onDelete,
+  changeStatus,
+  todoList,
 }) => {
   const [rowStatus, setRowStatus] = useState(status);
   const [i_className, setI_classname] = useState("fa-solid fa-check");
@@ -16,17 +25,28 @@ const TodoCard = ({
     "btn btn-success btn-sm"
   );
 
-  function handleCompleteness() {
+  function handleComplete() {
     if (i_className == "fa-solid fa-check") {
       setI_classname("fa-regular fa-rectangle-xmark");
-      setRowStatus("table-success");
-      setcompletenessclassName("btn btn-warning btn-sm");
+      setRowStatus(tableGreen);
+      setcompletenessclassName(`btn ${buttonYellow} btn-sm`);
+      changeStatus();
+      // console.log(rowStatus);
+      // console.log(todoList);
     } else {
       setI_classname("fa-solid fa-check");
-      setRowStatus("table-warning");
-      setcompletenessclassName("btn btn-success btn-sm");
+      setStatus(tableYellow);
+      setRowStatus(tableYellow);
+      setcompletenessclassName(`btn ${buttonGreen} btn-sm`);
+      changeStatus();
+      // console.log(rowStatus);
+      // console.log(todoList);
     }
   }
+
+  useEffect(() => {
+    console.log("Updated todoList:", todoList);
+  }, [todoList]);
 
   return (
     <tr className={className + " " + rowStatus}>
@@ -41,7 +61,7 @@ const TodoCard = ({
           type="button"
           id="create"
           onClick={() => {
-            handleCompleteness();
+            handleComplete();
           }}
         />
       </td>

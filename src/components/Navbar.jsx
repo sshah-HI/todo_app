@@ -1,5 +1,6 @@
 import CRUDButton from "./CRUDButton";
 import { getTodayDate, getTodayTime } from "../utils/dateUtils";
+import { useState } from "react";
 
 const Navbar = ({
   todo,
@@ -12,6 +13,8 @@ const Navbar = ({
   setStatus,
   addTodoList,
 }) => {
+  const [keyIndex, setKeyIndex] = useState(0);
+
   function handlePlus(e) {
     e.preventDefault();
 
@@ -21,7 +24,8 @@ const Navbar = ({
       return;
     }
 
-    addTodoList({ todo, date, time, status });
+    addTodoList({ key: keyIndex, todo, date, time, status });
+    setKeyIndex((prev) => prev + 1);
     // setTodo("");
   }
 

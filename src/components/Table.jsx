@@ -2,7 +2,14 @@ import React from "react";
 import TodoCard from "./TodoCard";
 import { tableGreen, tableYellow } from "../styles/colors";
 
-const Table = ({ todoList, setTodoList, status, setStatus }) => {
+const Table = ({
+  todoList,
+  setTodoList,
+  status,
+  setStatus,
+  filteredStatus,
+  filteredTodos,
+}) => {
   function handleDelete(index) {
     setTodoList((prev) => prev.filter((_, i) => i !== index));
   }
@@ -45,23 +52,41 @@ const Table = ({ todoList, setTodoList, status, setStatus }) => {
         </tr>
       </thead>
       <tbody>
-        {todoList.map((todo, index) => {
-          return (
-            <TodoCard
-              key={index}
-              number={index + 1}
-              todo={todo.todo}
-              date={todo.date}
-              time={todo.time}
-              className="align-middle"
-              status={status}
-              setStatus={setStatus}
-              todoList={todoList}
-              changeStatus={() => changeStatus(index)}
-              onDelete={() => handleDelete(index)}
-            />
-          );
-        })}
+        {filteredStatus === true
+          ? filteredTodos.map((todo, index) => {
+              return (
+                <TodoCard
+                  key={todo.key}
+                  number={index + 1}
+                  todo={todo.todo}
+                  date={todo.date}
+                  time={todo.time}
+                  className="align-middle"
+                  status={status}
+                  setStatus={setStatus}
+                  todoList={todoList}
+                  changeStatus={() => changeStatus(todo.key)}
+                  onDelete={() => handleDelete(todo.key)}
+                />
+              );
+            })
+          : todoList.map((todo, index) => {
+              return (
+                <TodoCard
+                  key={todo.key}
+                  number={index + 1}
+                  todo={todo.todo}
+                  date={todo.date}
+                  time={todo.time}
+                  className="align-middle"
+                  status={status}
+                  setStatus={setStatus}
+                  todoList={todoList}
+                  changeStatus={() => changeStatus(todo.key)}
+                  onDelete={() => handleDelete(todo.key)}
+                />
+              );
+            })}
       </tbody>
     </table>
   );

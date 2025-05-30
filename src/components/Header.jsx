@@ -1,10 +1,45 @@
-import { tableGreen } from "../styles/colors";
+import { tableGreen, tableYellow } from "../styles/colors";
 import HeaderButton from "./headerButton";
 
-const Header = ({ searchTerm, handleSearch, todoList, setFilteredTodos }) => {
+const Header = ({
+  searchTerm,
+  handleSearch,
+  todoList,
+  setFilteredTodos,
+  filteredStatus,
+  doneFilterStatus,
+  setDoneFilterStatus,
+  pendingFilterStatus,
+  setPendingFilterStatus,
+  setFilteredStatus,
+}) => {
   const Done = () => {
+    const nextPending = false;
+    const nextDone = !doneFilterStatus;
+
+    if (pendingFilterStatus === true) {
+      setPendingFilterStatus(nextPending);
+    }
+
     const filtered = todoList.filter((todo) => todo.status === tableGreen);
     setFilteredTodos(filtered);
+    setDoneFilterStatus(nextDone);
+
+    setFilteredStatus(nextDone || nextPending);
+  };
+  const Pending = () => {
+    const nextDone = false;
+    const nextPending = !pendingFilterStatus;
+
+    if (doneFilterStatus === true) {
+      setDoneFilterStatus(nextDone);
+    }
+
+    const filtered = todoList.filter((todo) => todo.status === tableYellow);
+    setFilteredTodos(filtered);
+    setPendingFilterStatus(nextPending);
+
+    setFilteredStatus(nextDone || nextPending); // use the intended next values
   };
 
   return (
@@ -40,8 +75,12 @@ const Header = ({ searchTerm, handleSearch, todoList, setFilteredTodos }) => {
               className="btn btn-success"
               onClick={Done}
             />
-            <HeaderButton name="Pending" className="btn btn-warning" />
-            <HeaderButton name="Overdue" className="btn btn-danger" />
+            <HeaderButton
+              name="Pending"
+              className="btn btn-warning"
+              onClick={Pending}
+            />
+            {/* <HeaderButton name="Overdue" className="btn btn-danger" /> */}
           </div>
         </div>
       </nav>

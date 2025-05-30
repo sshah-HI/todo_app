@@ -17,7 +17,7 @@ const TodoCard = ({
   setStatus,
   onDelete,
   changeStatus,
-  todoList,
+  todoList, //for debugging purposes
 }) => {
   const [rowStatus, setRowStatus] = useState(status);
   const [i_className, setI_classname] = useState("fa-solid fa-check");
@@ -31,22 +31,14 @@ const TodoCard = ({
       setRowStatus(tableGreen);
       setcompletenessclassName(`btn ${buttonYellow} btn-sm`);
       changeStatus();
-      // console.log(rowStatus);
-      // console.log(todoList);
     } else {
       setI_classname("fa-solid fa-check");
       setStatus(tableYellow);
       setRowStatus(tableYellow);
       setcompletenessclassName(`btn ${buttonGreen} btn-sm`);
       changeStatus();
-      // console.log(rowStatus);
-      // console.log(todoList);
     }
   }
-
-  useEffect(() => {
-    console.log("Updated todoList:", todoList);
-  }, [todoList]);
 
   return (
     <tr className={className + " " + rowStatus}>

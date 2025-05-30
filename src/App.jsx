@@ -7,7 +7,7 @@ import Table from "./components/Table";
 import { getTodayDate, getTodayTime } from "./utils/dateUtils";
 import { tableYellow } from "./styles/colors.js";
 
-// todoList = [0:{ "todo": todo, "date": date, "time": time,status: 'table-warning' }]
+// todoList = [0:{ key:keyIndex, "todo": todo, "date": date, "time": time,status: 'table-warning' }]
 
 const App = () => {
   const todayDate = getTodayDate();
@@ -20,6 +20,9 @@ const App = () => {
   const [time, setTime] = useState(todayTime);
   const [status, setStatus] = useState(tableYellow);
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const [doneFilterStatus, setDoneFilterStatus] = useState(false);
+  const [pendingFilterStatus, setPendingFilterStatus] = useState(false);
+  const [filteredStatus, setFilteredStatus] = useState(false);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -40,8 +43,14 @@ const App = () => {
         search={search}
         handleSearch={handleSearch}
         todoList={todoList}
+        doneFilterStatus={doneFilterStatus}
+        setDoneFilterStatus={setDoneFilterStatus}
+        pendingFilterStatus={pendingFilterStatus}
+        setPendingFilterStatus={setPendingFilterStatus}
         filteredTodos={filteredTodos}
         setFilteredTodos={setFilteredTodos}
+        filteredStatus={filteredStatus}
+        setFilteredStatus={setFilteredStatus}
       />
       <Navbar
         todo={todo}
@@ -59,6 +68,8 @@ const App = () => {
         setTodoList={setTodoList}
         status={status}
         setStatus={setStatus}
+        filteredStatus={filteredStatus}
+        filteredTodos={filteredTodos}
       />
     </div>
   );

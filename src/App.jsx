@@ -67,8 +67,11 @@ const App = () => {
         setTodoList={setTodoList}
         status={status}
         setStatus={setStatus}
+        doneFilterStatus={doneFilterStatus}
+        pendingFilterStatus={pendingFilterStatus}
         filteredStatus={filteredStatus}
         filteredTodos={filteredTodos}
+        setFilteredTodos={setFilteredTodos}
       />
     </div>
   );

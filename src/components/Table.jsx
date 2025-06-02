@@ -6,6 +6,7 @@ import {
   checkMarkIcon,
   crossMarkIcon,
 } from "../styles/icons";
+import { useEffect } from "react";
 
 const Table = ({
   todoList,
@@ -13,9 +14,24 @@ const Table = ({
   setStatus,
   filteredStatus,
   filteredTodos,
+  setFilteredTodos,
+  doneFilterStatus,
+  pendingFilterStatus,
 }) => {
-  function handleDelete(index) {
-    setTodoList((prev) => prev.filter((_, i) => i !== index));
+  useEffect(() => {
+    let filtered = todoList;
+
+    if (doneFilterStatus && !pendingFilterStatus) {
+      filtered = filtered.filter((todo) => todo.status === rowGreen);
+    } else if (pendingFilterStatus && !doneFilterStatus) {
+      filtered = filtered.filter((todo) => todo.status === rowYellow);
+    }
+
+    setFilteredTodos(filtered);
+  }, [todoList, doneFilterStatus, pendingFilterStatus]);
+
+  function handleDelete(key) {
+    setTodoList((prev) => prev.filter((obj) => obj.key !== key));
   }
 
   function changeStatus(key) {

@@ -13,13 +13,12 @@ const Header = ({
   setFilteredStatus,
 }) => {
   const handleSearch = (e) => {
+    e.preventDefault();
     const term = e.target.value;
-
     const nextPending = pendingFilterStatus;
     const nextDone = doneFilterStatus;
     const isSearching = term.length > 0;
     setSearchStatus(isSearching);
-
     const filtered = todoList
       .filter((todo) => todo.todo.toLowerCase().includes(term.toLowerCase()))
       .filter((todo) => {
@@ -27,7 +26,6 @@ const Header = ({
         if (nextPending && !nextDone) return todo.status === rowYellow;
         return true;
       });
-
     setFilteredTodos(filtered);
     setFilteredStatus(nextDone || nextPending || searchStatus);
   };
@@ -74,7 +72,7 @@ const Header = ({
                 className="img-fluid me-2"
                 style={{ height: "50px", width: "auto" }}
               />
-              <form className="d-flex">
+              <div className="d-flex">
                 <input
                   className="form-control me-2"
                   type="search"
@@ -82,7 +80,7 @@ const Header = ({
                   onChange={handleSearch}
                   aria-label="Search"
                 />
-              </form>
+              </div>
             </div>
           </div>
 

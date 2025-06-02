@@ -25,12 +25,12 @@ const Table = ({
           ? {
               ...obj,
               status: obj.status === rowGreen ? rowYellow : rowGreen,
-              i_className:
-                obj.i_className === checkMarkIcon
+              iconClassName:
+                obj.iconClassName === checkMarkIcon
                   ? crossMarkIcon
                   : checkMarkIcon,
-              completenessclassName:
-                obj.completenessclassName === checkButtonStyle
+              completeStatusClass:
+                obj.completeStatusClass === checkButtonStyle
                   ? crossButtonStyle
                   : checkButtonStyle,
             }
@@ -76,8 +76,8 @@ const Table = ({
                   className="align-middle"
                   status={todo.status}
                   setStatus={setStatus}
-                  i_classname={todo.i_className}
-                  completenessclassName={todo.completenessclassName}
+                  iconClassName={todo.iconClassName}
+                  completeStatusClass={todo.completeStatusClass}
                   todoList={todoList}
                   changeStatus={() => changeStatus(todo.key)}
                   onDelete={() => handleDelete(todo.key)}
@@ -95,8 +95,8 @@ const Table = ({
                   className="align-middle"
                   status={todo.status}
                   setStatus={setStatus}
-                  i_classname={todo.i_className}
-                  completenessclassName={todo.completenessclassName}
+                  iconClassName={todo.iconClassName}
+                  completeStatusClass={todo.completeStatusClass}
                   todoList={todoList}
                   changeStatus={() => changeStatus(todo.key)}
                   onDelete={() => handleDelete(todo.key)}

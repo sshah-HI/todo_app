@@ -1,6 +1,6 @@
 export default function CRUDButton({
   type,
-  i_className,
+  iconClassName,
   className,
   onClick,
   id,
@@ -8,7 +8,7 @@ export default function CRUDButton({
   return (
     <div>
       <button type={type} className={className} onClick={onClick} id={id}>
-        <i className={i_className}></i>
+        <i className={iconClassName}></i>
       </button>
     </div>
   );

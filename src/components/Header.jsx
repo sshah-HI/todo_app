@@ -2,17 +2,36 @@ import { rowGreen, rowYellow } from "../styles/colors";
 import HeaderButton from "./headerButton";
 
 const Header = ({
-  searchTerm,
-  handleSearch,
   todoList,
   setFilteredTodos,
-  filteredStatus,
+  searchStatus,
+  setSearchStatus,
   doneFilterStatus,
   setDoneFilterStatus,
   pendingFilterStatus,
   setPendingFilterStatus,
   setFilteredStatus,
 }) => {
+  const handleSearch = (e) => {
+    const term = e.target.value;
+
+    const nextPending = pendingFilterStatus;
+    const nextDone = doneFilterStatus;
+    const isSearching = term.length > 0;
+    setSearchStatus(isSearching);
+
+    const filtered = todoList
+      .filter((todo) => todo.todo.toLowerCase().includes(term.toLowerCase()))
+      .filter((todo) => {
+        if (nextDone && !nextPending) return todo.status === rowGreen;
+        if (nextPending && !nextDone) return todo.status === rowYellow;
+        return true;
+      });
+
+    setFilteredTodos(filtered);
+    setFilteredStatus(nextDone || nextPending || searchStatus);
+  };
+
   const Done = () => {
     const nextPending = false;
     const nextDone = !doneFilterStatus;
@@ -27,6 +46,7 @@ const Header = ({
 
     setFilteredStatus(nextDone || nextPending);
   };
+
   const Pending = () => {
     const nextDone = false;
     const nextPending = !pendingFilterStatus;
@@ -58,13 +78,10 @@ const Header = ({
                 <input
                   className="form-control me-2"
                   type="search"
-                  placeholder={searchTerm}
+                  placeholder="Search"
                   onChange={handleSearch}
                   aria-label="Search"
                 />
-                <button className="btn btn-outline-primary" type="submit">
-                  <i className="fas fa-search"></i>
-                </button>
               </form>
             </div>
           </div>

@@ -17,8 +17,8 @@ const TodoCard = ({
   setStatus,
   onDelete,
   changeStatus,
-  i_classname,
-  completenessclassName,
+  iconClassName,
+  completeStatusClass,
   todoList, //for debugging purposes
 }) => {
   const [rowStatus, setRowStatus] = useState(status);
@@ -41,8 +41,8 @@ const TodoCard = ({
       <td className="text-truncate">{time}</td>
       <td className="text-center">
         <CRUDButton
-          className={completenessclassName}
-          i_className={i_classname}
+          className={completeStatusClass}
+          iconClassName={iconClassName}
           type="button"
           id="create"
           onClick={() => {
@@ -53,7 +53,7 @@ const TodoCard = ({
       {/* <td className="text-center">
         <CRUDButton
           className="btn bg-info btn-sm"
-          i_className="fa-solid fa-pen-to-square"
+          iconClassName="fa-solid fa-pen-to-square"
           type="button"
           id="edit"
         />
@@ -61,7 +61,7 @@ const TodoCard = ({
       <td className="text-center">
         <CRUDButton
           className="btn btn-danger btn-sm"
-          i_className="fa-solid fa-trash"
+          iconClassName="fa-solid fa-trash"
           type="button"
           id="delete"
           onClick={onDelete}

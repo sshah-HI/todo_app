@@ -10,8 +10,8 @@ const Navbar = ({
   time,
   setTime,
   status,
-  i_className,
-  completenessclassName,
+  iconClassName,
+  completeStatusClass,
   addTodoList,
 }) => {
   const [keyIndex, setKeyIndex] = useState(0);
@@ -31,8 +31,8 @@ const Navbar = ({
       date,
       time,
       status,
-      i_className,
-      completenessclassName,
+      iconClassName,
+      completeStatusClass,
     });
     setKeyIndex((prev) => prev + 1);
     // setTodo("");
@@ -83,13 +83,13 @@ const Navbar = ({
         <div className="d-flex align-items-center gap-1 justify-content-end">
           <CRUDButton
             className="btn btn-success"
-            i_className="fa-solid fa-plus"
+            iconClassName="fa-solid fa-plus"
             type="submit"
             onClick={(e) => handlePlus(e)}
           />
           <CRUDButton
             className="btn btn-danger"
-            i_className="fa-solid fa-xmark"
+            iconClassName="fa-solid fa-xmark"
             type="button"
             onClick={() => Reset()}
           />

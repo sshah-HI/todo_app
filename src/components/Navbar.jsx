@@ -10,7 +10,8 @@ const Navbar = ({
   time,
   setTime,
   status,
-  setStatus,
+  i_className,
+  completenessclassName,
   addTodoList,
 }) => {
   const [keyIndex, setKeyIndex] = useState(0);
@@ -24,7 +25,15 @@ const Navbar = ({
       return;
     }
 
-    addTodoList({ key: keyIndex, todo, date, time, status });
+    addTodoList({
+      key: keyIndex,
+      todo,
+      date,
+      time,
+      status,
+      i_className,
+      completenessclassName,
+    });
     setKeyIndex((prev) => prev + 1);
     // setTodo("");
   }

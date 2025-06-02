@@ -3,8 +3,8 @@ import CRUDButton from "./CRUDButton";
 import {
   buttonYellow,
   buttonGreen,
-  tableGreen,
-  tableYellow,
+  rowGreen,
+  rowYellow,
 } from "../styles/colors.js";
 
 const TodoCard = ({
@@ -17,25 +17,18 @@ const TodoCard = ({
   setStatus,
   onDelete,
   changeStatus,
+  i_classname,
+  completenessclassName,
   todoList, //for debugging purposes
 }) => {
   const [rowStatus, setRowStatus] = useState(status);
-  const [i_className, setI_classname] = useState("fa-solid fa-check");
-  const [completenessclassName, setcompletenessclassName] = useState(
-    "btn btn-success btn-sm"
-  );
 
   function handleComplete() {
-    if (i_className == "fa-solid fa-check") {
-      setI_classname("fa-regular fa-rectangle-xmark");
-      setRowStatus(tableGreen);
-      setcompletenessclassName(`btn ${buttonYellow} btn-sm`);
+    if (status == rowYellow) {
+      setRowStatus(rowGreen);
       changeStatus();
     } else {
-      setI_classname("fa-solid fa-check");
-      setStatus(tableYellow);
-      setRowStatus(tableYellow);
-      setcompletenessclassName(`btn ${buttonGreen} btn-sm`);
+      setRowStatus(rowYellow);
       changeStatus();
     }
   }
@@ -49,7 +42,7 @@ const TodoCard = ({
       <td className="text-center">
         <CRUDButton
           className={completenessclassName}
-          i_className={i_className}
+          i_className={i_classname}
           type="button"
           id="create"
           onClick={() => {
@@ -57,14 +50,14 @@ const TodoCard = ({
           }}
         />
       </td>
-      <td className="text-center">
+      {/* <td className="text-center">
         <CRUDButton
           className="btn bg-info btn-sm"
           i_className="fa-solid fa-pen-to-square"
           type="button"
           id="edit"
         />
-      </td>
+      </td> */}
       <td className="text-center">
         <CRUDButton
           className="btn btn-danger btn-sm"

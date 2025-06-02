@@ -1,4 +1,4 @@
-import { tableGreen, tableYellow } from "../styles/colors";
+import { rowGreen, rowYellow } from "../styles/colors";
 import HeaderButton from "./headerButton";
 
 const Header = ({
@@ -21,7 +21,7 @@ const Header = ({
       setPendingFilterStatus(nextPending);
     }
 
-    const filtered = todoList.filter((todo) => todo.status === tableGreen);
+    const filtered = todoList.filter((todo) => todo.status === rowGreen);
     setFilteredTodos(filtered);
     setDoneFilterStatus(nextDone);
 
@@ -35,7 +35,7 @@ const Header = ({
       setDoneFilterStatus(nextDone);
     }
 
-    const filtered = todoList.filter((todo) => todo.status === tableYellow);
+    const filtered = todoList.filter((todo) => todo.status === rowYellow);
     setFilteredTodos(filtered);
     setPendingFilterStatus(nextPending);
 

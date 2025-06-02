@@ -1,11 +1,15 @@
-import React from "react";
 import TodoCard from "./TodoCard";
-import { tableGreen, tableYellow } from "../styles/colors";
+import { rowGreen, rowYellow } from "../styles/colors";
+import {
+  checkButtonStyle,
+  crossButtonStyle,
+  checkMarkIcon,
+  crossMarkIcon,
+} from "../styles/icons";
 
 const Table = ({
   todoList,
   setTodoList,
-  status,
   setStatus,
   filteredStatus,
   filteredTodos,
@@ -14,13 +18,21 @@ const Table = ({
     setTodoList((prev) => prev.filter((_, i) => i !== index));
   }
 
-  function changeStatus(index) {
+  function changeStatus(key) {
     setTodoList((prev) =>
-      prev.map((obj, i) =>
-        i === index
+      prev.map((obj) =>
+        obj.key === key
           ? {
               ...obj,
-              status: obj.status === tableGreen ? tableYellow : tableGreen,
+              status: obj.status === rowGreen ? rowYellow : rowGreen,
+              i_className:
+                obj.i_className === checkMarkIcon
+                  ? crossMarkIcon
+                  : checkMarkIcon,
+              completenessclassName:
+                obj.completenessclassName === checkButtonStyle
+                  ? crossButtonStyle
+                  : checkButtonStyle,
             }
           : obj
       )
@@ -43,9 +55,9 @@ const Table = ({
           <th className="text-center" scope="col">
             Complete
           </th>
-          <th className="text-center" scope="col">
+          {/* <th className="text-center" scope="col">
             Edit
-          </th>
+          </th> */}
           <th className="text-center" scope="col">
             Delete
           </th>
@@ -62,8 +74,10 @@ const Table = ({
                   date={todo.date}
                   time={todo.time}
                   className="align-middle"
-                  status={status}
+                  status={todo.status}
                   setStatus={setStatus}
+                  i_classname={todo.i_className}
+                  completenessclassName={todo.completenessclassName}
                   todoList={todoList}
                   changeStatus={() => changeStatus(todo.key)}
                   onDelete={() => handleDelete(todo.key)}
@@ -79,8 +93,10 @@ const Table = ({
                   date={todo.date}
                   time={todo.time}
                   className="align-middle"
-                  status={status}
+                  status={todo.status}
                   setStatus={setStatus}
+                  i_classname={todo.i_className}
+                  completenessclassName={todo.completenessclassName}
                   todoList={todoList}
                   changeStatus={() => changeStatus(todo.key)}
                   onDelete={() => handleDelete(todo.key)}
@@ -93,7 +109,7 @@ const Table = ({
 };
 
 export default Table;
-
+0;
 {
   /* <TodoCard
           number="1"

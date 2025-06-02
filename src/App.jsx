@@ -5,9 +5,10 @@ import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import Table from "./components/Table";
 import { getTodayDate, getTodayTime } from "./utils/dateUtils";
-import { tableYellow } from "./styles/colors.js";
+import { rowYellow, rowGreen } from "./styles/colors.js";
+import { checkButtonStyle, checkMarkIcon } from "./styles/icons.js";
 
-// todoList = [0:{ key:keyIndex, "todo": todo, "date": date, "time": time,status: 'table-warning' }]
+// todoList = [0:{ key:keyIndex, "todo": todo, "date": date, "time": time,status: 'table-warning', iclassName, completenessclassName }]
 
 const App = () => {
   const todayDate = getTodayDate();
@@ -18,15 +19,18 @@ const App = () => {
   const [todo, setTodo] = useState("");
   const [date, setDate] = useState(todayDate);
   const [time, setTime] = useState(todayTime);
-  const [status, setStatus] = useState(tableYellow);
+  const [status, setStatus] = useState(rowYellow);
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [doneFilterStatus, setDoneFilterStatus] = useState(false);
   const [pendingFilterStatus, setPendingFilterStatus] = useState(false);
   const [filteredStatus, setFilteredStatus] = useState(false);
+  const [i_className, setI_classname] = useState(checkMarkIcon);
+  const [completenessclassName, setcompletenessclassName] =
+    useState(checkButtonStyle);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    console.log(search);
+    search.map();
   };
 
   const addTodoList = (newTodo) => {
@@ -60,7 +64,8 @@ const App = () => {
         time={time}
         setTime={setTime}
         status={status}
-        setStatus={setStatus}
+        i_className={i_className}
+        completenessclassName={completenessclassName}
         addTodoList={addTodoList}
       />
       <Table
